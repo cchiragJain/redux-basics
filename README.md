@@ -1,6 +1,6 @@
 # Redux
 
-Redux is a framework used to manage state generally with `react`.
+Redux is a state management library generally used with `react`.
 
 ## Redux Cycle
 
@@ -17,13 +17,13 @@ const createPolicy = (name, amount) => {
 		payload: {
 			name: name,
 			amount: amount,
-            // could also just use the es5 syntax of just passing in the name
+			// could also just use the es5 syntax of just passing in the name
 		},
 	};
 };
 ```
 
-**3. Dispatch -** Dispatch is already available inside the redux library so we don't need to write code for it. It makes copies of our action and pass if of to different places inside our application.( _the dispatch is like the form receiver which later distributes it_ )
+**3. Dispatch -** Dispatch is already available inside the redux library so we don't need to write code for it. It makes copies of our action and pass if of to different places inside our application.( _the dispatch is like the form receiver which makes copies & later distributes it_ )
 
 **4. Reducers -** Reducers are responsible for taking in an action and some existing amount of data and to process the action and then return it so that it can then be centralized in some other location.
 
@@ -49,7 +49,7 @@ const claimsHistory = (oldListOfClaims = [], action) => {
 const { createStore, combineReducers } = Redux;
 const reducers = combineReducers({
 	claimsHistory: claimsHistory,
-    // all other reducers
+	// all other reducers
 });
 const store = createStore(reducers);
 const action = createPolicy('Chirag', 19);
@@ -59,7 +59,7 @@ store.getState(); // current state which includes all the data.
 
 Each dispatch creates a new cycle.
 
-<img src="C:\Users\cjain\Desktop\REACT\redux\README.assets\image-20200917160541387.png" alt="image-20200917160541387" style="zoom:50%;" />
+<img src="./README.assets/image-20200917160541387.png" alt="image-20200917160541387" style="zoom:50%;" />
 
 **Remember we can only modify the state in redux through the dispatch function by dispatching an action that has been created by an action creator.**
 
@@ -67,9 +67,26 @@ Each dispatch creates a new cycle.
 
 ### Without Redux
 
-<img src="C:\Users\cjain\Desktop\REACT\redux\README.assets\image-20200917171250477.png" alt="image-20200917171250477" style="zoom: 50%;" />
+`use git checkout master` to see the basic app.
+
+<img src="./README.assets/image-20200917171250477.png" alt="image-20200917171250477" style="zoom: 50%;" />
 
 ### With Redux
 
-<img src="C:\Users\cjain\Desktop\REACT\redux\README.assets\image-20200917180433754.png" alt="image-20200917180433754" style="zoom:50%;" />
+<img src="./README.assets/image-20200917180433754.png" alt="image-20200917180433754" style="zoom:50%;" />
 
+**_Remember how only action creators can change the state in redux therefore `Select song` is going to be a action creator_**
+
+### BTS
+
+<img src="./README.assets/image-20200918155324337.png" alt="image-20200918155324337" style="zoom:50%;" />
+
+- The provider is passed in the state from the store as a prop which wraps the App component.
+
+- The Connect Tag/Function/Component wraps the Song List component and also communicates with the Provider component using the context API ( which basically allows a parent component like `Provider` to communicate with any child component like `Connect` even if there are other child component b/w them such as the `App` component. )
+
+  <img src="./README.assets/image-20200918160601184.png" alt="image-20200918160601184" style="zoom:50%;" />
+
+#### File Structure
+
+<img src="./README.assets/image-20200918160952729.png" alt="image-20200918160952729" style="zoom:50%;" />
